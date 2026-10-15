@@ -1,0 +1,6 @@
+
+---
+
+## Cheie a seriei
+
+Volumul 1 a dat cifra: un pendul scade cu patru ani, iar o arhivistă a observat-o numărând cu degetul. Volumul 2 a arătat prețul: Kessa a întrebat „DE CE” prin Plasă, un fir s-a rupt, iar un răspuns costă patru ani, deși nimeni nu știa încă din somnul cui. Volumul 3 a văzut aceleași locuri în cinci faze, ca un singur corp văzut din cinci unghiuri. Volumul 4 a păstrat în scrisori și jurnale urmele unui custode pe care nu-l ține minte nimeni. Volumul 5 a urcat pe orbită, la fanarii care sunt, fără să știe, urechea Plasei. Volumul 6 a trecut prin cele douăzeci de pendule și a arătat că nicio epocă nu a început singură. Volumul 7 a urmat un om al secolelor, dilatat lângă gaura neagră, adică felul în care Tavian ajunge la capătul seriei. Volumul 8 a lăsat planeta și gaura să vorbească și a arătat un cer cu polul rătăcitor, pentru că lumea e o spirală. Volumul 9 le leagă: bătăile sunt anii firului, mâna veche este mâna lui Tavian, LĂSAȚI este rugămintea unei femei scoase din timp, iar cele trei ipoteze sunt cele trei fețe ale aceleiași pietre: un Păstrător, două funcții (a ține și a asculta) și un lanț fără început. Seria numără înapoi spre zero, dar zero este punctul din care a pornit numărătoarea.

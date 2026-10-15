@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Dacă folosești această lucrare, te rugăm să o citezi astfel."
+title: "Pendulul"
+type: book
+authors:
+  - family-names: "Chiuță"
+    given-names: "Alexandru-Ionuț"
+    alias: "Alexio"
+abstract: "Roman SF în nouă volume despre o planetă care oscilează între trei stele și o gaură neagră. Scris în colaborare cu Claude (Anthropic)."
+license: CC-BY-NC-SA-4.0
+date-released: 2026-10-15
+language: ron
+keywords: [science fiction, roman, limba română, simulare 3D]

@@ -1,0 +1,11 @@
+{
+  "name": "pendulul-simulare",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simulare 3D a lumii din seria Pendulul și cititor al textelor (un singur fișier HTML, offline).",
+  "type": "module",
+  "scripts": { "build": "node build.mjs" },
+  "author": "Alexio",
+  "license": "MIT",
+  "dependencies": { "esbuild": "^0.28.2", "three": "^0.160.0" }
+}

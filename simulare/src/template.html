@@ -1,0 +1,310 @@
+<title>Pendulul 3D</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Concept: o fereastră de observator peste sistem. Imaginea 3D e toată pagina, interfața e discretă, tipărită ca o fișă de arhivă. */
+:root {
+  color-scheme: dark;
+  --bg: #04060b;
+  --ink: #ece7da;
+  --muted: #8e97ab;
+  --dim: #7d88a3;
+  --line: rgba(236, 231, 218, 0.14);
+  --glass: rgba(7, 10, 19, 0.68);
+  --glass2: rgba(13, 18, 31, 0.86);
+  --amber: #ffbd5a;
+  --ember: #ff6a4d;
+  --pale: #b8c4ff;
+  --void: #9a85ff;
+  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+html, body { height: 100%; height: 100dvh; overflow: hidden; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font: 13px/1.4 var(--sans);
+  overflow: hidden; position: relative; -webkit-tap-highlight-color: transparent;
+}
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
+#labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.lbl {
+  position: absolute; left: 0; top: 0; margin: -7px 0 0 9px; white-space: nowrap; font-size: 11px; letter-spacing: 0.02em;
+  color: var(--c, var(--ink)); text-shadow: 0 0 6px #000, 0 0 3px #000, 0 0 1px #000; will-change: transform; display: none;
+}
+.lbl.sys { color: var(--pale); font-family: var(--serif); letter-spacing: 0.14em; text-transform: uppercase; font-size: 10.5px; }
+.lbl.planet { color: #9fd0ff; }
+.lbl.orb { color: #bfe0ff; }
+.lbl.small { font-size: 10px; opacity: 0.85; }
+.lbl.place { color: #ffe9b0; }
+.lbl.cons { font-family: var(--serif); font-style: italic; font-size: 13px; }
+.lbl.cutl { color: #ffd9a0; font-size: 10.5px; }
+
+.ui {
+  position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: space-between;
+  padding-top: max(10px, env(safe-area-inset-top, 0px));
+  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.ui > * { pointer-events: none; }
+.ui > div:first-child { min-height: 0; flex: 1 1 auto; display: flex; flex-direction: column; }
+.ui button, .ui input, .ui select, .ui .card, .ui .panel, .ui .chips, .ui .scrubrow { pointer-events: auto; }
+.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.brand { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.mark { font-family: var(--serif); letter-spacing: 0.32em; font-size: 13px; text-transform: uppercase; }
+.sub { color: var(--muted); font-size: 10.5px; letter-spacing: 0.06em; }
+.left { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; margin-top: 8px; min-height: 0; flex: 0 1 auto; overflow: hidden; }
+
+.btn {
+  background: var(--glass2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px;
+  font: inherit; cursor: pointer; min-height: 34px;
+}
+.btn:hover { border-color: rgba(236, 231, 218, 0.38); }
+.btn.on { border-color: var(--amber); color: var(--amber); }
+.btn.mini { min-height: 24px; padding: 0 8px; border-radius: 6px; line-height: 22px; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+.card {
+  background: var(--glass); border: 1px solid var(--line); border-radius: 10px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.hud { width: min(340px, 100%); padding: 9px 11px; display: flex; flex-direction: column; gap: 7px; box-sizing: border-box; }
+.hudhead { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: #6db2ff; }
+#hudPhase { font-family: var(--serif); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; }
+#hudMain { color: var(--muted); font-size: 11px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.note { color: var(--amber); font-size: 12px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 12px; margin: 0; }
+.stats div { display: flex; flex-direction: column; min-width: 0; }
+.stats dt { color: var(--dim); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.stats dd { margin: 0; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stats .wide { grid-column: 1 / -1; }
+.hud.min .stats, .hud.min .note { display: none; }
+.tmapwrap { width: min(310px, 100%); padding: 6px 8px; box-sizing: border-box; }
+@media (min-width: 761px) { .tmapwrap { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); top: calc(max(10px, env(safe-area-inset-top, 0px)) + 46px); } }
+#tmap { width: 100%; max-width: 300px; aspect-ratio: 300 / 210; display: block; }
+
+.panel {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(330px, 88vw); box-sizing: border-box; background: var(--glass2);
+  border-left: 1px solid var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  padding: 12px 14px 14px; padding-top: calc(12px + env(safe-area-inset-top, 0px)); padding-right: max(14px, env(safe-area-inset-right, 0px));
+  overflow-y: auto; transform: translateX(105%); visibility: hidden; transition: transform 0.22s ease, visibility 0s 0.22s; display: flex; flex-direction: column; gap: 14px; z-index: 5;
+}
+.panel.open { transform: none; visibility: visible; transition: transform 0.22s ease, visibility 0s; }
+.panel h2 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 14px; letter-spacing: 0.04em; }
+.panel .ph { display: flex; justify-content: space-between; align-items: center; }
+.panel h3 { margin: 0 0 6px; color: var(--dim); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+.chk { display: flex; gap: 9px; align-items: center; padding: 5px 0; cursor: pointer; }
+.chk input { width: 17px; height: 17px; accent-color: var(--amber); margin: 0; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.panel p { margin: 0; color: var(--muted); font-size: 12px; }
+select {
+  background: var(--glass2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font: inherit; min-height: 34px;
+}
+.kbd { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+.bottom { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.volinfo { padding: 7px 10px; font-size: 12px; display: flex; flex-direction: column; gap: 2px; max-width: 560px; box-sizing: border-box; }
+.volinfo b { font-family: var(--serif); font-size: 13px; }
+.volinfo i { color: var(--amber); font-style: normal; font-size: 11px; letter-spacing: 0.06em; }
+.volinfo span { color: var(--muted); }
+.volinfo .note { color: #9bf0c8; }
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; max-width: 100%; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none; background: var(--glass2); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: 12px; cursor: pointer; min-height: 30px; white-space: nowrap;
+}
+.chip b { font-family: var(--mono); color: var(--amber); margin-right: 6px; font-weight: 600; }
+.chip.on { border-color: var(--amber); background: rgba(255, 189, 90, 0.12); }
+.scrubrow { display: flex; flex-direction: column; gap: 7px; padding: 8px 10px; box-sizing: border-box; }
+#scrub { width: 100%; height: 9px; -webkit-appearance: none; appearance: none; border-radius: 5px; margin: 5px 0; cursor: pointer; background: #333; }
+#scrub::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--ink); }
+#scrub::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid var(--bg); }
+#speed { width: 110px; accent-color: var(--amber); }
+.ctl { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.stepper { display: flex; align-items: center; gap: 4px; }
+.stepper .val { min-width: 46px; text-align: center; font-family: var(--mono); font-size: 13px; }
+.stepper .sub { display: block; text-align: center; font-size: 10px; color: var(--dim); }
+.small-chk { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+.small-chk input { accent-color: var(--amber); margin: 0; }
+#speedTxt { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 74px; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 520px) {
+  .hud { padding: 8px 10px; }
+  .stats dd { font-size: 11.5px; }
+  .sub { display: none; }
+  #speed { width: 90px; }
+}
+@media (max-height: 560px) { .hud .stats, .hud .note, .tmapwrap { display: none; } .volinfo span, .volinfo i { display: none; } }
+@media (pointer: coarse) {
+  .btn.mini { min-height: 36px; min-width: 36px; padding: 0 10px; }
+  .chip { min-height: 38px; }
+  .rdtabs button { min-width: 36px; height: 36px; }
+  .rdsearch input { height: 38px; }
+  .chk { padding: 9px 0; }
+}
+
+/* ---- Cititor ---- */
+body.reading .ui, body.reading #labels { visibility: hidden; }
+.reader { position: fixed; inset: 0; z-index: 50; background: #080b13; color: var(--ink); display: flex; flex-direction: column; font-family: var(--sans); }
+.reader[hidden] { display: none; }
+.rdtop { display: flex; align-items: center; gap: 8px; padding: 8px max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px)); padding-top: max(8px, env(safe-area-inset-top, 0px)); border-bottom: 1px solid var(--line); flex-wrap: wrap; background: #0b0f1a; }
+.rdtop .ttl { font-family: var(--serif); font-size: 15px; font-weight: 600; flex: 1 1 160px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rdtabs { display: flex; gap: 4px; }
+.rdtabs button { min-width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--line); background: transparent; color: var(--muted); font: 600 12px var(--mono); cursor: pointer; }
+.rdtabs button.on { color: var(--amber); border-color: var(--amber); }
+.rdsearch { position: relative; flex: 0 1 200px; min-width: 120px; }
+.rdsearch input { width: 100%; box-sizing: border-box; height: 30px; background: var(--glass2); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 0 9px; font: 13px var(--sans); }
+.rdhits { position: absolute; top: 34px; right: 0; width: min(460px, 92vw); max-height: 60vh; overflow: auto; background: #0e1322; border: 1px solid var(--line); border-radius: 8px; z-index: 3; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+.rdhits[hidden] { display: none; }
+.rdhits button { display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); color: var(--ink); padding: 8px 10px; font: 13px/1.4 var(--serif); cursor: pointer; }
+.rdhits button:hover { background: rgba(255,189,90,.08); }
+.rdhits button span { display: block; color: var(--dim); font: 10.5px var(--sans); letter-spacing: .04em; margin-bottom: 2px; }
+.rdhits mark { background: rgba(255,189,90,.3); color: var(--amber); }
+.rdhits em { display: block; padding: 10px; color: var(--muted); }
+.rdbar { height: 2px; background: rgba(255,255,255,.06); }
+.rdbar i { display: block; height: 100%; width: 0; background: var(--amber); }
+.rdmain { flex: 1; min-height: 0; display: flex; }
+.rdtoc { width: 280px; flex: none; overflow: auto; border-right: 1px solid var(--line); padding: 10px 6px 30px; background: #0a0e18; }
+.rdtoc a { display: block; padding: 5px 10px; font-size: 12.5px; line-height: 1.35; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rdtoc a:hover { color: var(--ink); background: rgba(255,255,255,.04); }
+.rdtoc a.t1 { color: var(--amber); font-weight: 600; margin-top: 8px; }
+.rdtoc a.t3 { padding-left: 22px; font-size: 12px; }
+.rdscroll { flex: 1; min-width: 0; overflow: auto; scroll-behavior: auto; overscroll-behavior: contain; position: relative; }
+.rdscroll:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+.rdbody { max-width: 40em; margin: 0 auto; padding: 28px max(18px, env(safe-area-inset-left, 0px)) 120px max(18px, env(safe-area-inset-right, 0px)); font-family: var(--serif); font-size: 19px; line-height: 1.7; }
+.rdbody p { margin: 0 0 1em; text-wrap: pretty; }
+.rdbody h2, .rdbody h3, .rdbody h4, .rdbody h5 { font-family: var(--serif); font-weight: 600; line-height: 1.25; text-wrap: balance; scroll-margin-top: 12px; }
+.rdbody h2 { font-size: 1.55em; margin: 2.2em 0 .6em; color: var(--amber); }
+.rdbody h3 { font-size: 1.22em; margin: 1.9em 0 .5em; }
+.rdbody h4 { font-size: 1.02em; margin: 1.6em 0 .4em; color: var(--pale); letter-spacing: .04em; }
+.rdbody h2.l1:first-child { margin-top: 0; }
+.rdbody hr { border: 0; text-align: center; margin: 2em 0; color: var(--dim); }
+.rdbody hr::before { content: "· · ·"; letter-spacing: .5em; }
+.rdbody code { font-family: var(--mono); font-size: .85em; color: var(--pale); }
+.rdbody ul, .rdbody ol { padding-left: 1.3em; margin: 0 0 1em; }
+.rdtbl { overflow-x: auto; margin: 0 0 1.2em; }
+.rdbody table { border-collapse: collapse; font: 14px/1.4 var(--sans); min-width: 60%; }
+.rdbody th, .rdbody td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+.rdbody th { color: var(--amber); font-weight: 600; background: rgba(255,189,90,.06); }
+.rdflash { background: rgba(255,189,90,.16); box-shadow: -8px 0 0 rgba(255,189,90,.16), 8px 0 0 rgba(255,189,90,.16); border-radius: 3px; }
+.rdgo { margin-left: 10px; vertical-align: middle; background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; font: 11px var(--sans); padding: 3px 8px; cursor: pointer; letter-spacing: 0; }
+.rdgo:hover { color: var(--amber); border-color: var(--amber); }
+#rdTocBtn { display: none; }
+@media (max-width: 760px) {
+  #rdTocBtn { display: inline-block; }
+  .rdtoc { position: absolute; left: 0; top: 0; bottom: 0; z-index: 4; transform: translateX(-102%); transition: transform .2s; width: min(300px, 84vw); box-shadow: 8px 0 24px rgba(0,0,0,.5); }
+  .reader.tocopen .rdtoc { transform: none; }
+  .rdmain { position: relative; }
+  .rdbody { font-size: 18px; }
+  .rdsearch { flex-basis: 100%; }
+  .rdhits { right: auto; left: 0; }
+}
+.noglmsg { margin-top: 14px; padding: 12px 14px; max-width: 520px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.noglmsg[hidden] { display: none; }
+.noglmsg span { color: var(--muted); }
+.noglvols { display: flex; flex-wrap: wrap; gap: 6px; }
+#rdBody:not(.showapp) .rdapp, #rdToc:not(.showapp) a.rdapp { display: none; }
+body.nogl .left, body.nogl .bottom, body.nogl #btnPanel, body.nogl #panel, body.nogl #labels, body.nogl #gl, body.nogl #tmapWrap, body.nogl .rdgo, body.nogl #rdMap { display: none !important; }
+.volread { margin-top: 6px; align-self: flex-start; }
+@media (prefers-reduced-motion: reduce) { .panel { transition: none; } }
+</style>
+<canvas id="gl" role="img" aria-label="Simulare 3D a planetei pendul, a celor trei stele și a Golului"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div class="ui" lang="ro">
+  <div>
+    <header class="top">
+      <div class="brand"><span class="mark">Pendulul</span><span class="sub">simulare 3D a seriei · 9 volume</span></div>
+      <div style="display:flex;gap:6px"><button class="btn" id="btnRead">Citește</button><button class="btn" id="btnPanel" aria-expanded="false" aria-controls="panel">Straturi</button></div>
+    </header>
+    <section class="card noglmsg" id="noglMsg" hidden role="status">
+      <b>Scena 3D nu poate porni pe acest dispozitiv; cititorul funcționează.</b>
+      <span>Simularea cere WebGL, care lipsește sau este oprit în acest browser. Textele celor nouă volume se pot citi mai departe.</span>
+      <div class="noglvols" id="noglVols"></div>
+    </section>
+    <div class="left">
+      <section class="card hud" id="hud">
+        <div class="hudhead">
+          <span class="dot" id="hudDot"></span><b id="hudPhase">Apropierea</b><span id="hudMain"></span>
+          <button class="btn mini" id="btnHud" aria-label="Restrânge panoul de date" aria-expanded="true" aria-controls="hudStats">–</button>
+        </div>
+        <div class="note" id="hudNote" hidden></div>
+        <dl class="stats" id="hudStats">
+          <div><dt>Gravitație</dt><dd id="sG">1,00</dd></div>
+          <div><dt>Viteză de evadare</dt><dd id="sV">1,00</dd></div>
+          <div><dt>Maree</dt><dd id="sT">0%</dd></div>
+          <div><dt>Temperatură</dt><dd id="sTemp">288 K</dd></div>
+          <div><dt>Atmosferă</dt><dd id="sAtm">100%</dd></div>
+          <div><dt>Distanță până la Golul</dt><dd id="sDist">0</dd></div>
+          <div class="wide"><dt>Stele care luminează</dt><dd id="sLight">3/3</dd></div>
+          <div class="wide"><dt>Rachete</dt><dd id="sRock">0</dd></div>
+          <div class="wide"><dt>Plasa</dt><dd id="sFire">34 de fire</dd></div>
+          <div class="wide"><dt>Ferestre rămase</dt><dd id="sWin">0</dd></div>
+        </dl>
+      </section>
+      <section class="card tmapwrap" id="tmapWrap" hidden><canvas id="tmap" role="img" aria-label="Harta timpului: pendulul curent pe cerc, perioada fiecărui pendul în bare; în Volumul 9, panglica de fază"></canvas></section>
+    </div>
+  </div>
+
+  <aside class="panel" id="panel" aria-label="Straturi și opțiuni">
+    <div class="ph"><h2>Straturi și opțiuni</h2><button class="btn mini" id="panelClose" aria-label="Închide">Închide</button></div>
+    <div><h3>Straturi</h3><div id="layerList"></div></div>
+    <div id="culRow" hidden><h3>Cultura (Volumul 8)</h3><select id="culSel" aria-label="Cultura"></select></div>
+    <div>
+      <h3>Plasa</h3>
+      <div class="row"><button class="btn" id="btnAsk">Întreabă „DE CE”</button><button class="btn" id="btnReset">Reface firele</button></div>
+      <p style="margin-top:6px">Perioada = 4 × numărul firelor (P20: 34, P21: 33, P22: 32). Un răspuns costă patru ani și rupe în avans următorul fir; în P20 se pot pune două întrebări.</p>
+    </div>
+    <div>
+      <h3>Timp</h3>
+      <button class="btn" id="invBtn" aria-pressed="false">Cronologie inversă: nu</button>
+      <p style="margin-top:6px">Inversă înseamnă de la P20 spre P1, cu perioada crescând cu patru ani la fiecare pas; în interiorul unui pendul timpul curge tot înainte.</p>
+    </div>
+    <div>
+      <h3>Calitate</h3>
+      <select id="quality" aria-label="Calitate"><option value="mid">Echilibrat</option><option value="high">Maximă</option><option value="low">Economic</option></select>
+    </div>
+    <div>
+      <h3>Note</h3>
+      <p>Valorile sunt relative și calibrate pe canon: perioada 216 − 4n ani, Apropierea 34 de ani, Fereastra 112 − 4n luni, Trecerea 4 luni, Îndepărtarea 39 de ani, Adâncul restul. Traiectoria și straturile colorate din secțiune sunt schematice; raza planetei rămâne constantă.</p>
+      <p class="kbd" style="margin-top:6px">Spațiu: pauză · , și . : pendulul anterior sau următor · Esc: închide panoul</p>
+    </div>
+  </aside>
+
+  <div class="bottom">
+    <div class="card volinfo" id="volInfo"></div>
+    <div class="chips" id="volChips" role="group" aria-label="Volumele seriei"></div>
+    <div class="card scrubrow">
+      <input type="range" id="scrub" min="0" max="13600" value="3100" aria-label="Timpul în pendul">
+      <div class="ctl">
+        <button class="btn" id="btnPlay">Pauză</button>
+        <div class="stepper"><button class="btn mini" id="pPrev" aria-label="Pendulul anterior">‹</button><div><div class="val" id="pTxt">P20</div><span class="sub" id="pSub">136 de ani</span></div><button class="btn mini" id="pNext" aria-label="Pendulul următor">›</button></div>
+        <input type="range" id="speed" min="-2.2" max="1.7" step="0.05" value="0.6" aria-label="Viteza timpului">
+        <span id="speedTxt">4 ani/s</span>
+        <label class="small-chk"><input type="checkbox" id="autoSlow" checked>Încetinește la Fereastră</label>
+        <select id="viewSel" aria-label="Vedere">
+          <option value="planeta">Planetă</option><option value="cer">Cer</option><option value="maree">Maree</option><option value="orbita">Orbită</option><option value="corte">Secțiune</option>
+          <option value="umbre">Umbre</option><option value="sistem">Sistem</option><option value="gaura">Gaura neagră</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-label="Textele volumelor" lang="ro">
+  <div class="rdtop">
+    <button class="btn mini" id="rdTocBtn" aria-label="Cuprins">☰</button>
+    <div class="ttl" id="rdTitle"></div>
+    <div class="rdtabs" id="rdTabs" role="group" aria-label="Volumul"></div>
+    <div class="rdsearch"><input id="rdSearch" type="search" placeholder="Caută în toate volumele" aria-label="Caută în text"><div class="rdhits" id="rdHits" hidden></div></div>
+    <button class="btn mini" id="rdSmall" aria-label="Text mai mic">A−</button><button class="btn mini" id="rdBig" aria-label="Text mai mare">A+</button>
+    <button class="btn mini" id="rdApp" aria-pressed="false">Arată notele autorului</button>
+    <button class="btn mini" id="rdMap">Harta volumului</button>
+    <button class="btn mini" id="rdClose" aria-label="Închide cititorul">Închide ✕</button>
+  </div>
+  <div class="rdbar"><i id="rdBar"></i></div>
+  <div class="rdmain">
+    <nav class="rdtoc" id="rdToc" aria-label="Cuprins"></nav>
+    <div class="rdscroll" id="rdScroll" tabindex="0" role="region" aria-label="Textul volumului"><article class="rdbody" id="rdBody"></article></div>
+  </div>
+</div>
+<script>
+/*__BUNDLE__*/
+</script>
