@@ -26,4 +26,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
 
-Restul proiectului: vezi `LICENSE` (texte, CC BY-NC-SA 4.0) și `LICENSE-CODE` (cod, MIT).
+Restul proiectului: vezi `LICENSE` (MIT, texte și cod).

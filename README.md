@@ -64,8 +64,7 @@ Seria a fost scrisă împreună cu un model de inteligență artificială (Claud
 
 ## Licență
 
-- **Texte** (carte, ghid, seria, ediții): [CC BY-NC-SA 4.0](LICENSE). Poți citi, copia, distribui și adapta cu atribuire, în scop necomercial, păstrând aceeași licență.
-- **Cod** (simulare, scripturi): [MIT](LICENSE-CODE).
+- **Texte și cod** (carte, ghid, seria, ediții, simulare, scripturi): [MIT](LICENSE). Poți folosi, copia, modifica și redistribui liber, cu păstrarea mențiunii de drepturi de autor.
 - **three.js** (inclus în HTML): MIT, vezi [NOTICE.md](NOTICE.md).
 
 Pentru ediții tipărite, audio, traduceri sau adaptări cu scop comercial, scrie autorului prin profilul de GitHub.

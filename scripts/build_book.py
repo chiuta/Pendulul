@@ -4,7 +4,7 @@ import re, subprocess, sys, pathlib
 R = pathlib.Path(__file__).resolve().parent.parent
 OUT = R / 'dist'; OUT.mkdir(exist_ok=True)
 TITLES = ["Arhivista","Patru voci","Cinci faze","Arhivele","Fanarele","Cele douăzeci de pendule","Cel din toate pendulele","Cei care nu vorbesc","Cel care ajustează orbita"]
-FRONT = """© 2026 Alexandru-Ionuț Chiuță (Alexio). Text sub licența Creative Commons Atribuire – Necomercial – Distribuire în condiții identice 4.0 Internațional (CC BY-NC-SA 4.0): https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ro
+FRONT = """© 2026 Alexandru-Ionuț Chiuță (Alexio). Text sub licența MIT (vezi fișierul LICENSE din depozit: https://github.com/chiuta/Pendulul).
 
 Cartea a fost scrisă în colaborare cu un model de inteligență artificială (Claude, Anthropic): ideea, structura, deciziile de canon și revizia aparțin autorului; textul a fost redactat și revizuit împreună.
 
@@ -39,7 +39,7 @@ def assemble(with_toc):
 want = set(sys.argv[1:]) or {'epub', 'pdf'}
 src = OUT / 'Pendulul-ed-cititor.md'; src.write_text(assemble(False), encoding='utf8')
 meta = ['-M','title=Pendulul','-M','subtitle=Roman în nouă volume','-M','author=Alexio','-M','lang=ro-RO',
-        '-M','rights=CC BY-NC-SA 4.0','-M','date=2026','-M','description=Serie SF în nouă volume despre o planetă care oscilează între trei stele și o gaură neagră.']
+        '-M','rights=MIT','-M','date=2026','-M','description=Serie SF în nouă volume despre o planetă care oscilează între trei stele și o gaură neagră.']
 base = ['pandoc','-f','markdown-yaml_metadata_block','-s',str(src)] + meta
 if 'epub' in want:
     css = OUT / '_epub.css'

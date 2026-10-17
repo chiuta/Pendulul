@@ -1,4 +1,4 @@
-© 2026 Alexandru-Ionuț Chiuță (Alexio). Text sub licența Creative Commons Atribuire – Necomercial – Distribuire în condiții identice 4.0 Internațional (CC BY-NC-SA 4.0): https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ro
+© 2026 Alexandru-Ionuț Chiuță (Alexio). Text sub licența MIT (vezi fișierul LICENSE din depozit: https://github.com/chiuta/Pendulul).
 
 Cartea a fost scrisă în colaborare cu un model de inteligență artificială (Claude, Anthropic): ideea, structura, deciziile de canon și revizia aparțin autorului; textul a fost redactat și revizuit împreună.
 
