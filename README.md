@@ -1,43 +1,45 @@
 # Pendulul
 
-**Roman SF în nouă volume** de Alexio, în colaborare cu Claude (Anthropic).
+**English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-O planetă oscilează între trei stele și o gaură neagră. Într-o lume fără industrie, civilizația are doar câteva ferestre, tot mai scurte, în care rachetele cu pulbere pot ajunge pe orbită. Perioada fiecărui pendul scade cu patru ani, iar cititorul numără împreună cu personajele.
+**A science-fiction novel in nine volumes** by Alexio, in collaboration with Claude (Anthropic).
 
-## Cum se citește
+A planet oscillates between three stars and a black hole. In a world without industry, civilization has only a few windows, ever shorter, in which gunpowder rockets can reach orbit. The period of each pendulum shrinks by four years, and the reader counts along with the characters.
 
-Volumele se citesc **în ordine, de la 1 la 9**. Fiecare are altă formă.
+## How to read it
 
-| Vol. | Titlu | Forma |
+The volumes are meant to be read **in order, from 1 to 9**. Each one has a different form.
+
+| Vol. | Title | Form |
 | --- | --- | --- |
-| 1 | [Arhivista](carte/01-arhivista.md) | roman, capitole scurte |
-| 2 | [Patru voci](carte/02-patru-voci.md) | capitole duble, „sus” și „jos” |
-| 3 | [Cinci faze](carte/03-cinci-faze.md) | cinci voci și un atlas |
-| 4 | [Arhivele](carte/04-arhivele.md) | roman epistolar, în 13 dosare |
-| 5 | [Fanarele](carte/05-fanarele.md) | cronică din noduri |
-| 6 | [Cele douăzeci de pendule](carte/06-cele-douazeci-de-pendule.md) | o scenă din fiecare pendul |
-| 7 | [Cel din toate pendulele](carte/07-cel-din-toate-pendulele.md) | un singur narator |
-| 8 | [Cei care nu vorbesc](carte/08-cei-care-nu-vorbesc.md) | două voci neobișnuite |
-| 9 | [Cel care ajustează orbita](carte/09-cel-care-ajusteaza-orbita.md) | povestit în ordine inversă |
+| 1 | [Arhivista](carte/01-arhivista.md) | novel, short chapters |
+| 2 | [Patru voci](carte/02-patru-voci.md) | double chapters, "above" and "below" |
+| 3 | [Cinci faze](carte/03-cinci-faze.md) | five voices and an atlas |
+| 4 | [Arhivele](carte/04-arhivele.md) | epistolary novel, in 13 files |
+| 5 | [Fanarele](carte/05-fanarele.md) | chronicle told from nodes |
+| 6 | [Cele douăzeci de pendule](carte/06-cele-douazeci-de-pendule.md) | one scene from each pendulum |
+| 7 | [Cel din toate pendulele](carte/07-cel-din-toate-pendulele.md) | a single narrator |
+| 8 | [Cei care nu vorbesc](carte/08-cei-care-nu-vorbesc.md) | two unusual voices |
+| 9 | [Cel care ajustează orbita](carte/09-cel-care-ajusteaza-orbita.md) | told in reverse order |
 
-[Ghidul cititorului](ghid/ghidul-cititorului.md) are câte o secțiune pe volum, fără spoilere. Citește-l doar până la volumul la care ai ajuns; secțiunea „După volumul 9” conține spoilere.
+The [Reader's Guide](ghid/ghidul-cititorului.md) has one section per volume, spoiler-free. Read it only up to the volume you have reached; the section "After volume 9" contains spoilers.
 
-## Ediții
+## Editions
 
-| Format | Fișier |
+| Format | File |
 | --- | --- |
-| EPUB (cu copertă) | [`dist/Pendulul.epub`](dist/Pendulul.epub) |
-| PDF, format A5, cu semne de carte | [`dist/Pendulul.pdf`](dist/Pendulul.pdf) |
-| Simulare 3D + cititor, un singur fișier HTML, funcționează offline | [`dist/pendulul-3d.html`](dist/pendulul-3d.html) |
-| Textul întregii cărți, Markdown | [`dist/Pendulul-ed-cititor.md`](dist/Pendulul-ed-cititor.md) |
+| EPUB (with cover) | [`dist/Pendulul.epub`](dist/Pendulul.epub) |
+| PDF, A5 format, with bookmarks | [`dist/Pendulul.pdf`](dist/Pendulul.pdf) |
+| 3D simulation + reader, a single HTML file, works offline | [`dist/pendulul-3d.html`](dist/pendulul-3d.html) |
+| Full text of the whole book, Markdown | [`dist/Pendulul-ed-cititor.md`](dist/Pendulul-ed-cititor.md) |
 
-Dacă GitHub Pages e activat pentru acest depozit, simularea rulează și la adresa paginii proiectului (se servește din `docs/`).
+If GitHub Pages is enabled for this repository, the simulation also runs at the project page address (it is served from `docs/`).
 
-## Simularea 3D
+## The 3D simulation
 
-Un singur fișier HTML, fără dependențe de rețea: planeta, cei trei sori, Golul, rachetele Ferestrei, harta pendulelor și cititorul celor nouă volume (cu căutare, cuprins, mărirea textului și reluarea lecturii). Dacă browserul nu poate porni WebGL, cititorul rămâne funcțional.
+A single HTML file with no network dependencies: the planet, the three suns, the Void, the Window rockets, the map of the pendulums and a reader for the nine volumes (with search, table of contents, text enlargement and reading resume). If the browser cannot start WebGL, the reader remains functional.
 
-Se reconstruiește din surse:
+It is rebuilt from source:
 
 ```bash
 cd simulare
@@ -45,30 +47,30 @@ npm install
 npm run build        # scrie ../dist/pendulul-3d.html și ../docs/index.html
 ```
 
-## Aparatul de lume
+## The world apparatus
 
-În [`seria/`](seria/) sunt materialele de lucru: [canonul](seria/canon.md) (cifre și reguli ale lumii), [atlasul](seria/atlas.md), [cronologia și glosarul](seria/cronologie-glosar.md). Subdirectorul [`seria/aparat/`](seria/aparat/) păstrează notele autorului, scoase din ediția cititorului. Conțin spoilere.
+[`seria/`](seria/) holds the working materials: the [canon](seria/canon.md) (the world's figures and rules), the [atlas](seria/atlas.md), the [chronology and glossary](seria/cronologie-glosar.md). The subdirectory [`seria/aparat/`](seria/aparat/) keeps the author's notes, removed from the reader's edition. They contain spoilers.
 
-## Reconstruirea ediției (EPUB, PDF)
+## Rebuilding the edition (EPUB, PDF)
 
-Necesită `pandoc` și Python 3; pentru PDF, și `playwright` (Chromium).
+Requires `pandoc` and Python 3; for PDF, also `playwright` (Chromium).
 
 ```bash
 python3 scripts/build_book.py          # EPUB + PDF în dist/
 python3 scripts/build_book.py epub     # doar EPUB
 ```
 
-## Despre colaborarea cu inteligența artificială
+## About the collaboration with artificial intelligence
 
-Seria a fost scrisă împreună cu un model de inteligență artificială (Claude, Anthropic). Ideea, lumea, structura, deciziile de canon și selecția finală aparțin autorului; textul a fost redactat, revizuit și verificat împreună, în mai multe runde (consecvența cifrelor, a numelor și a cronologiei între volume). Simularea 3D a fost construită în același fel.
+The series was written together with an artificial intelligence model (Claude, Anthropic). The idea, the world, the structure, the canon decisions and the final selection belong to the author; the text was drafted, revised and checked together, over several rounds (consistency of figures, names and chronology across volumes). The 3D simulation was built the same way.
 
-## Licență
+## License
 
-- **Texte și cod** (carte, ghid, seria, ediții, simulare, scripturi): [MIT](LICENSE). Poți folosi, copia, modifica și redistribui liber, cu păstrarea mențiunii de drepturi de autor.
-- **three.js** (inclus în HTML): MIT, vezi [NOTICE.md](NOTICE.md).
+- **Texts and code** (book, guide, series, editions, simulation, scripts): [MIT](LICENSE). You may freely use, copy, modify and redistribute, keeping the copyright notice.
+- **three.js** (included in the HTML): MIT, see [NOTICE.md](NOTICE.md).
 
-Pentru ediții tipărite, audio, traduceri sau adaptări cu scop comercial, scrie autorului prin profilul de GitHub.
+For printed editions, audio, translations or adaptations for commercial purposes, write to the author through the GitHub profile.
 
-## Cum citezi
+## How to cite
 
-Vezi [`CITATION.cff`](CITATION.cff).
+See [`CITATION.cff`](CITATION.cff).
