@@ -2,9 +2,13 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
+**Versiune:** 1.0.0 · **Ultima actualizare:** 2026-10-18
+
 **Roman SF în nouă volume** de Alexio, în colaborare cu Claude (Anthropic).
 
 O planetă oscilează între trei stele și o gaură neagră. Într-o lume fără industrie, civilizația are doar câteva ferestre, tot mai scurte, în care rachetele cu pulbere pot ajunge pe orbită. Perioada fiecărui pendul scade cu patru ani, iar cititorul numără împreună cu personajele.
+
+Limbile interfeței: **Română**.
 
 ## Cum se citește
 

@@ -2,9 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
+**Versión:** 1.0.0 · **Última actualización:** 2026-10-18
+
 **Novela de ciencia ficción en nueve volúmenes** de Alexio, en colaboración con Claude (Anthropic).
 
 Un planeta oscila entre tres estrellas y un agujero negro. En un mundo sin industria, la civilización dispone solo de unas pocas ventanas, cada vez más cortas, en las que los cohetes de pólvora pueden alcanzar la órbita. El período de cada péndulo disminuye en cuatro años, y el lector cuenta junto con los personajes.
+
+Idiomas de la interfaz: **rumano**.
 
 ## Cómo se lee
 

@@ -2,9 +2,13 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
+**Version:** 1.0.0 · **Last updated:** 2026-10-18
+
 **A science-fiction novel in nine volumes** by Alexio, in collaboration with Claude (Anthropic).
 
 A planet oscillates between three stars and a black hole. In a world without industry, civilization has only a few windows, ever shorter, in which gunpowder rockets can reach orbit. The period of each pendulum shrinks by four years, and the reader counts along with the characters.
+
+Interface languages: **Romanian**.
 
 ## How to read it
 

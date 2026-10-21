@@ -2,9 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
+**Versione:** 1.0.0 · **Ultimo aggiornamento:** 2026-10-18
+
 **Romanzo di fantascienza in nove volumi** di Alexio, in collaborazione con Claude (Anthropic).
 
 Un pianeta oscilla tra tre stelle e un buco nero. In un mondo senza industria, la civiltà ha solo poche finestre, sempre più brevi, in cui i razzi a polvere possono raggiungere l'orbita. Il periodo di ogni pendolo si accorcia di quattro anni, e il lettore conta insieme ai personaggi.
+
+Lingue dell'interfaccia: **rumeno**.
 
 ## Come leggerlo
 

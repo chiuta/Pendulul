@@ -2,9 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
+**Versão:** 1.0.0 · **Última atualização:** 2026-10-18
+
 **Romance de ficção científica em nove volumes** de Alexio, em colaboração com Claude (Anthropic).
 
 Um planeta oscila entre três estrelas e um buraco negro. Num mundo sem indústria, a civilização dispõe apenas de algumas janelas, cada vez mais curtas, em que os foguetes de pólvora podem alcançar a órbita. O período de cada pêndulo diminui quatro anos, e o leitor conta juntamente com as personagens.
+
+Idiomas da interface: **romeno**.
 
 ## Como ler
 

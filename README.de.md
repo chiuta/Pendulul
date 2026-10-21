@@ -2,9 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
+**Version:** 1.0.0 · **Zuletzt aktualisiert:** 2026-10-18
+
 **Science-Fiction-Roman in neun Bänden** von Alexio, in Zusammenarbeit mit Claude (Anthropic).
 
 Ein Planet pendelt zwischen drei Sternen und einem Schwarzen Loch. In einer Welt ohne Industrie hat die Zivilisation nur wenige, immer kürzere Fenster, in denen Pulverraketen den Orbit erreichen können. Die Periode jedes Pendels verkürzt sich um vier Jahre, und der Leser zählt gemeinsam mit den Figuren.
+
+Oberflächensprachen: **Rumänisch**.
 
 ## Wie man liest
 

@@ -2,9 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
+**Verzió:** 1.0.0 · **Utolsó frissítés:** 2026-10-18
+
 **Sci-fi regény kilenc kötetben** – Alexio műve, Claude (Anthropic) közreműködésével.
 
 Egy bolygó három csillag és egy fekete lyuk között leng. Egy ipar nélküli világban a civilizációnak csak néhány, egyre rövidebb ablaka van, amikor a puskaporos rakéták elérhetik a pályát. Minden inga periódusa négy évvel rövidebb, és az olvasó együtt számol a szereplőkkel.
+
+A felület nyelvei: **román**.
 
 ## Hogyan olvassuk
 

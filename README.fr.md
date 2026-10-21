@@ -2,9 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
+**Version :** 1.0.0 · **Dernière mise à jour :** 2026-10-18
+
 **Roman de science-fiction en neuf volumes** d'Alexio, en collaboration avec Claude (Anthropic).
 
 Une planète oscille entre trois étoiles et un trou noir. Dans un monde sans industrie, la civilisation ne dispose que de quelques fenêtres, de plus en plus courtes, durant lesquelles des fusées à poudre peuvent atteindre l'orbite. La période de chaque pendule diminue de quatre ans, et le lecteur compte avec les personnages.
+
+Langues de l'interface : **roumain**.
 
 ## Comment le lire
 
