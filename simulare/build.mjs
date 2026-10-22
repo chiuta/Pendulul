@@ -1,5 +1,7 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
+import crypto from 'node:crypto';
+const VERSION = '1.0.1', UPDATED = '2026-10-22';
 
 // Textele volumelor, din ../carte/*.md; ghidul din ../ghid/
 const P = '..';
@@ -45,7 +47,11 @@ const m = /^([\s\S]*?<\/style>)([\s\S]*)$/.exec(fragment);
 const headPart = m ? m[1].replace(/<meta name="claude:[^>]*>\n?/, '') : '';
 const bodyPart = m ? m[2] : fragment;
 const FAV = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2304060b'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%23e8c25a'/%3E%3Cline x1='32' y1='20' x2='32' y2='44' stroke='%23ece7da' stroke-width='2'/%3E%3Ccircle cx='32' cy='48' r='6' fill='%23c8553d'/%3E%3C/svg%3E";
-const full = '<!doctype html>\n<html lang="ro">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="description" content="Pendulul: simulare 3D a unei planete care oscilează între trei stele și o gaură neagră, cu textele complete ale seriei de 9 volume. Funcționează offline, într-un singur fișier.">\n<meta name="theme-color" content="#04060b">\n<meta name="author" content="Alexio">\n<meta property="og:title" content="Pendulul 3D">\n<meta property="og:description" content="Simulare 3D și cititor pentru seria SF Pendulul (9 volume).">\n<meta property="og:type" content="website">\n<link rel="icon" href="' + FAV + '">\n' + headPart + '\n</head>\n<body>\n<noscript>Pendulul 3D are nevoie de JavaScript. Textele seriei sunt disponibile în ediția EPUB/PDF.</noscript>\n<!-- Pendulul — © Alexio, 2026. Text și cod: MIT. Include three.js (MIT, © 2010-2023 three.js authors); nota completă la sfârșitul scriptului și în NOTICE. -->\n' + bodyPart + '\n' + fs.readFileSync('src/donate.html', 'utf8') + '</body>\n</html>\n';
+const full0 = '<!doctype html>\n<html lang="ro">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="description" content="Pendulul: simulare 3D a unei planete care oscilează între trei stele și o gaură neagră, cu textele complete ale seriei de 9 volume. Funcționează offline, într-un singur fișier.">\n<meta name="theme-color" content="#04060b">\n<meta name="application-version" content="' + VERSION + '">\n<meta name="last-updated" content="' + UPDATED + '">\n<!--CSP-->\n<meta name="author" content="Alexio">\n<meta property="og:title" content="Pendulul 3D">\n<meta property="og:description" content="Simulare 3D și cititor pentru seria SF Pendulul (9 volume).">\n<meta property="og:type" content="website">\n<link rel="icon" href="' + FAV + '">\n' + headPart + '\n</head>\n<body>\n<noscript>Pendulul 3D are nevoie de JavaScript. Textele seriei sunt disponibile în ediția EPUB/PDF.</noscript>\n<!-- Pendulul — © Alexio, 2026. Text și cod: MIT. Include three.js (MIT, © 2010-2023 three.js authors); nota completă la sfârșitul scriptului și în NOTICE. -->\n' + bodyPart + '\n' + fs.readFileSync('src/donate.html', 'utf8') + '</body>\n</html>\n';
+// CSP: scripturile inline doar pe bază de hash; fără rețea, fără cod terț (three.js e inclus în pachet)
+const hashes = [...full0.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)].map((m) => `'sha256-${crypto.createHash('sha256').update(m[1]).digest('base64')}'`);
+const CSP = `default-src 'none'; script-src ${hashes.join(' ')}; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'self'; base-uri 'none'; form-action 'none'`;
+const full = full0.replace('<!--CSP-->', `<meta http-equiv="Content-Security-Policy" content="${CSP}">`);
 fs.mkdirSync('../dist', { recursive: true }); fs.mkdirSync('../docs', { recursive: true });
 fs.writeFileSync('../dist/pendulul-3d.html', full);
 fs.writeFileSync('../docs/index.html', full);

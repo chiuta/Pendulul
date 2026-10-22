@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.0.0 · **Ultima actualizare:** 2026-10-18
+**Versiune:** 1.0.1 · **Ultima actualizare:** 2026-10-22
 
 **Roman SF în nouă volume** de Alexio, în colaborare cu Claude (Anthropic).
 
@@ -74,6 +74,13 @@ Seria a fost scrisă împreună cu un model de inteligență artificială (Claud
 - **three.js** (inclus în HTML): MIT, vezi [NOTICE.md](NOTICE.md).
 
 Pentru ediții tipărite, audio, traduceri sau adaptări cu scop comercial, scrie autorului prin profilul de GitHub.
+
+## Istoric / Changelog
+
+### 1.0.1 — 2026-10-22
+- Pagina simulării 3D (`docs/index.html`, publicată și de GitHub Pages) are acum un service worker real și un manifest de aplicație web cu pictograme: se poate instala și se deschide offline după prima vizită. Fișierul independent `dist/pendulul-3d.html` rămâne neschimbat ca funcționare.
+- Accesibilitate: exact un H1 și un reper main; zero încălcări axe-core la 360 px; tot textul are minimum 12 px; ținte tactile mai mari pentru butoanele mici, glisoare și căsuța de bifat.
+- O politică strictă de securitate a conținutului (scripturi doar pe bază de hash, fără rețea) este încorporată în pagină; pagina nu încarcă nimic de la terți (fără CDN).
 
 ## Cum citezi
 

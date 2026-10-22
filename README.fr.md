@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.0.0 · **Dernière mise à jour :** 2026-10-18
+**Version :** 1.0.1 · **Dernière mise à jour :** 2026-10-22
 
 **Roman de science-fiction en neuf volumes** d'Alexio, en collaboration avec Claude (Anthropic).
 
@@ -74,6 +74,13 @@ La série a été écrite avec un modèle d'intelligence artificielle (Claude, A
 - **three.js** (inclus dans le HTML) : MIT, voir [NOTICE.md](NOTICE.md).
 
 Pour des éditions imprimées, audio, des traductions ou des adaptations à but commercial, écrivez à l'auteur via son profil GitHub.
+
+## Historique / Changelog
+
+### 1.0.1 — 2026-10-22
+- La page de la simulation 3D (`docs/index.html`, aussi publiée par GitHub Pages) dispose maintenant d'un vrai service worker et d'un manifeste d'application web avec icônes : elle est installable et s'ouvre hors ligne après la première visite. Le fichier autonome `dist/pendulul-3d.html` ne change pas de fonctionnement.
+- Accessibilité : exactement un H1 et un repère main ; aucune violation axe-core à 360 px ; tout le texte à 12 px minimum ; zones tactiles plus grandes pour les petits boutons, les curseurs et la case à cocher.
+- Une politique de sécurité du contenu stricte (scripts uniquement par empreinte, aucun réseau) est intégrée à la page ; la page ne charge rien auprès de tiers (aucun CDN).
 
 ## Comment citer
 

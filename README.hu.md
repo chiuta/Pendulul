@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.0.0 · **Utolsó frissítés:** 2026-10-18
+**Verzió:** 1.0.1 · **Utolsó frissítés:** 2026-10-22
 
 **Sci-fi regény kilenc kötetben** – Alexio műve, Claude (Anthropic) közreműködésével.
 
@@ -74,6 +74,13 @@ A sorozat egy mesterséges intelligencia modellel (Claude, Anthropic) közösen 
 - **three.js** (a HTML-be beépítve): MIT, lásd: [NOTICE.md](NOTICE.md).
 
 Nyomtatott kiadásokhoz, hangoskönyvhöz, fordításokhoz vagy kereskedelmi célú adaptációkhoz írj a szerzőnek a GitHub-profilján keresztül.
+
+## Előzmények / Changelog
+
+### 1.0.1 — 2026-10-22
+- A 3D-szimuláció oldala (`docs/index.html`, a GitHub Pages is ezt publikálja) valódi service workert és ikonokkal ellátott webalkalmazás-manifestet kapott: telepíthető, és az első látogatás után kapcsolat nélkül is megnyílik. A különálló `dist/pendulul-3d.html` fájl működése nem változik.
+- Akadálymentesség: pontosan egy H1 és egy main tereptárgy; nincs axe-core hiba 360 px-en; minden szöveg legalább 12 px; nagyobb érintési felület a kis gomboknak, a csúszkáknak és a jelölőnégyzetnek.
+- Szigorú Content-Security-Policy (szkriptek csak hash alapján, hálózat nélkül) van beépítve az oldalba; az oldal semmit sem tölt be harmadik féltől (CDN nélkül).
 
 ## Hivatkozás
 
