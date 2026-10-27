@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.0.1 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 2.2.0 · **Zuletzt aktualisiert:** 2026-10-27
 
 **Science-Fiction-Roman in neun Bänden** von Alexio, in Zusammenarbeit mit Claude (Anthropic).
 
@@ -27,6 +27,10 @@ Die Bände werden **der Reihe nach, von 1 bis 9** gelesen. Jeder hat eine andere
 | 9 | [Cel care ajustează orbita](carte/09-cel-care-ajusteaza-orbita.md) | in umgekehrter Reihenfolge erzählt |
 
 Der [Leserführer](ghid/ghidul-cititorului.md) hat einen Abschnitt pro Band, ohne Spoiler. Lies ihn nur bis zu dem Band, bei dem du angekommen bist; der Abschnitt „Nach Band 9“ enthält Spoiler.
+
+## Präsentationsseite
+
+[`docs/prezentare.html`](docs/prezentare.html) ist eine Präsentationsseite in einer einzigen Datei (auf Rumänisch): Cover, Klappentext, die neun Bände, Download-Links und ein erstes kostenloses Kapitel (Prolog und Kapitel 1–2 von Band 1, unverändert). Keine Netzwerkanfragen, kein JavaScript. Seit 2.2.0 verlinkt die gehostete Simulation (`docs/index.html`) im Panel „Straturi și opțiuni“ darauf („Pagina cărții“). (Automatische Übersetzung, nicht von Muttersprachlern geprüft.)
 
 ## Ausgaben
 

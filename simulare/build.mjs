@@ -1,7 +1,7 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-const VERSION = '2.1.0', UPDATED = '2026-10-27';
+const VERSION = '2.2.0', UPDATED = '2026-10-27';
 
 // Textele volumelor, din ../carte/*.md; ghidul din ../ghid/
 const P = '..';
@@ -54,5 +54,9 @@ const CSP = `default-src 'none'; script-src ${hashes.join(' ')}; style-src 'unsa
 const full = full0.replace('<!--CSP-->', `<meta http-equiv="Content-Security-Policy" content="${CSP}">`);
 fs.mkdirSync('../dist', { recursive: true }); fs.mkdirSync('../docs', { recursive: true });
 fs.writeFileSync('../dist/pendulul-3d.html', full);
-fs.writeFileSync('../docs/index.html', full);
+// Varianta găzduită (docs/) are în plus un link către pagina de prezentare (docs/prezentare.html); fișierul autonom din dist/ nu îl are (link relativ ar fi rupt).
+const LINK = '<div><a class="btn" id="aboutBook" href="prezentare.html">Pagina cărții: copertă, sinopsis, capitol gratuit</a></div>';
+const MARK = '<button class="btn mini" id="panelClose" aria-label="Închide">Închide</button></div>';
+if (!full.includes(MARK)) throw new Error('marcajul panoului lipsește');
+fs.writeFileSync('../docs/index.html', full.replace(MARK, MARK + LINK));
 console.log('bundle KB', (js.length / 1024).toFixed(0), 'full KB', (full.length / 1024).toFixed(0));

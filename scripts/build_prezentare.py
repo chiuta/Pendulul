@@ -5,7 +5,7 @@ Textul provine doar din depozit: README.ro.md (sinopsis), carte/01-arhivista.md 
 Utilizare: python3 scripts/build_prezentare.py        (necesită doar biblioteca standard Python)"""
 import re, base64, html, pathlib
 R = pathlib.Path(__file__).resolve().parent.parent
-VERSION, UPDATED = '2.1.0', '2026-10-27'
+VERSION, UPDATED = '2.2.0', '2026-10-27'
 GH = 'https://github.com/chiuta/Pendulul'
 TITLES = [("Arhivista", "roman, capitole scurte"), ("Patru voci", "capitole duble: „sus” și „jos”"), ("Cinci faze", "cinci voci și un atlas"),
           ("Arhivele", "roman epistolar, în 13 dosare"), ("Fanarele", "cronică din noduri"), ("Cele douăzeci de pendule", "o scenă din fiecare pendul"),
