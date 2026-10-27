@@ -1,7 +1,7 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-const VERSION = '1.0.1', UPDATED = '2026-10-22';
+const VERSION = '2.1.0', UPDATED = '2026-10-27';
 
 // Textele volumelor, din ../carte/*.md; ghidul din ../ghid/
 const P = '..';

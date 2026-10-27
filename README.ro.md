@@ -2,13 +2,19 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.0.1 · **Ultima actualizare:** 2026-10-22
+**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+
+**Stare:** stabil · **Offline:** complet (simularea 3D și pagina de prezentare nu fac cereri în rețea; descărcarea edițiilor cere internet)
 
 **Roman SF în nouă volume** de Alexio, în colaborare cu Claude (Anthropic).
 
 O planetă oscilează între trei stele și o gaură neagră. Într-o lume fără industrie, civilizația are doar câteva ferestre, tot mai scurte, în care rachetele cu pulbere pot ajunge pe orbită. Perioada fiecărui pendul scade cu patru ani, iar cititorul numără împreună cu personajele.
 
 Limbile interfeței: **Română**.
+
+## Pagina de prezentare
+
+[`docs/prezentare.html`](docs/prezentare.html) este o pagină de prezentare într-un singur fișier: copertă, sinopsis, cele nouă volume și forma lor, linkuri de descărcare pentru ediții și un prim capitol gratuit (prologul și capitolele 1–2 din volumul 1, neschimbate). Nu face cereri în rețea și nu are JavaScript. Se generează cu `python3 scripts/build_prezentare.py` din textul propriu al depozitului și poate servi drept model pentru celelalte cărți ale seriei (se înlocuiesc coperta, sinopsisul și capitolul gratuit). Dacă GitHub Pages este activ, este servită la `/prezentare.html`, lângă simulare.
 
 ## Cum se citește
 
@@ -76,6 +82,8 @@ Seria a fost scrisă împreună cu un model de inteligență artificială (Claud
 Pentru ediții tipărite, audio, traduceri sau adaptări cu scop comercial, scrie autorului prin profilul de GitHub.
 
 ## Istoric / Changelog
+
+Jurnalul complet este în [`CHANGELOG.md`](CHANGELOG.md). 2.1.0 (2026-10-27, anterior: v1.0.1): pagină de prezentare cu copertă, sinopsis și primul capitol gratuit.
 
 ### 1.0.1 — 2026-10-22
 - Pagina simulării 3D (`docs/index.html`, publicată și de GitHub Pages) are acum un service worker real și un manifest de aplicație web cu pictograme: se poate instala și se deschide offline după prima vizită. Fișierul independent `dist/pendulul-3d.html` rămâne neschimbat ca funcționare.
