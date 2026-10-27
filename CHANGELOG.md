@@ -1,5 +1,17 @@
 # Jurnal de modificări — Pendulul
 
+## 2.2.0 — 2026-10-27
+
+Anterior: v2.1.0. Recenzie 2 (2026-10-27).
+
+- Simularea găzduită (`docs/index.html`): link „Pagina cărții: copertă, sinopsis, capitol gratuit” în panoul „Straturi și opțiuni”, către `prezentare.html`. Fișierul autonom `dist/pendulul-3d.html` nu are linkul (relativ, ar fi rupt). `simulare/build.mjs` injectează linkul doar în varianta din `docs/`; CSS-ul `a.btn` adăugat în `simulare/src/template.html`.
+- `docs/sw.js`: `prezentare.html` adăugat în cache-ul PWA (disponibilă offline).
+- README: șase limbi (fr, it, es, pt, de, hu) aduse la 2.2.0 cu secțiunea „Pagina de prezentare” (traducere automată); EN/RO actualizate.
+- Test nou `tests/prezentare-link.test.mjs` (link prezent și funcțional, nicio cerere externă, 0 erori JS/CSP, pagina în cache-ul PWA).
+- Nu s-a rebuild-uit bundle-ul 3D (lipsește `three` local); modificările din `docs/index.html` și `dist/pendulul-3d.html` sunt doar de markup/CSS/metadate, deci hash-urile CSP ale scripturilor rămân valide. Scripturile nu s-au schimbat.
+
+Nu s-a implementat: coperți suplimentare (depozitul are o singură copertă, `dist/coperta.jpg`); EPUB/PDF nou (cele existente nu s-au regenerat, textul nu s-a schimbat).
+
 ## 2.1.0 — 2026-10-27
 
 Anterior: v1.0.1. Recenzie 2026-10-27.

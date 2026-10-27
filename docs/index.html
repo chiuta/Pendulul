@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Pendulul: simulare 3D a unei planete care oscilează între trei stele și o gaură neagră, cu textele complete ale seriei de 9 volume. Funcționează offline, într-un singur fișier.">
 <meta name="theme-color" content="#04060b">
-<meta name="application-version" content="2.1.0">
+<meta name="application-version" content="2.2.0">
 <meta name="last-updated" content="2026-10-27">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-YO40Pa9U54kBXfBS8s7ySLVhwIuT7JC9cMSApha5DIk=' 'sha256-hMwMC4zimxkw7JqAY4jqeoXFWPV28SD1Hkxawzo+Elk='; style-src 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; base-uri 'none'; form-action 'none'; manifest-src 'self'; worker-src 'self'">
 <meta name="author" content="Alexio">
@@ -73,6 +73,7 @@ body {
   font: inherit; cursor: pointer; min-height: 34px;
 }
 .btn:hover { border-color: rgba(236, 231, 218, 0.38); }
+a.btn { display: inline-block; text-decoration: none; line-height: 20px; }
 .btn.on { border-color: var(--amber); color: var(--amber); }
 .btn.mini { min-height: 28px; min-width: 28px; padding: 0 8px; border-radius: 6px; line-height: 22px; }
 button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
@@ -272,7 +273,7 @@ input[type=checkbox] { width: 20px; height: 20px; }
   </div>
 
   <aside class="panel" id="panel" role="region" aria-label="Straturi și opțiuni">
-    <div class="ph"><h2>Straturi și opțiuni</h2><button class="btn mini" id="panelClose" aria-label="Închide">Închide</button></div>
+    <div class="ph"><h2>Straturi și opțiuni</h2><button class="btn mini" id="panelClose" aria-label="Închide">Închide</button></div><div><a class="btn" id="aboutBook" href="prezentare.html">Pagina cărții: copertă, sinopsis, capitol gratuit</a></div>
     <div><h3>Straturi</h3><div id="layerList"></div></div>
     <div id="culRow" hidden><h3>Cultura (Volumul 8)</h3><select id="culSel" aria-label="Cultura"></select></div>
     <div>

@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.0.1 · **Dernière mise à jour :** 2026-10-22
+**Version :** 2.2.0 · **Dernière mise à jour :** 2026-10-27
 
 **Roman de science-fiction en neuf volumes** d'Alexio, en collaboration avec Claude (Anthropic).
 
@@ -27,6 +27,10 @@ Les volumes se lisent **dans l'ordre, de 1 à 9**. Chacun a une forme différent
 | 9 | [Cel care ajustează orbita](carte/09-cel-care-ajusteaza-orbita.md) | raconté en ordre inverse |
 
 Le [Guide du lecteur](ghid/ghidul-cititorului.md) comporte une section par volume, sans divulgâcher. Ne le lisez que jusqu'au volume où vous êtes arrivé ; la section « Après le volume 9 » contient des spoilers.
+
+## Page de présentation
+
+[`docs/prezentare.html`](docs/prezentare.html) est une page de présentation en un seul fichier (en roumain) : couverture, synopsis, les neuf volumes, liens de téléchargement et un premier chapitre gratuit (prologue et chapitres 1–2 du volume 1, inchangés). Sans requête réseau ni JavaScript. Depuis la 2.2.0, la simulation hébergée (`docs/index.html`) y renvoie depuis le panneau « Straturi și opțiuni » (« Pagina cărții »). (Traduction automatique, non vérifiée par un locuteur natif.)
 
 ## Éditions
 

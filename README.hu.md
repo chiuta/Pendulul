@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.0.1 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 2.2.0 · **Utolsó frissítés:** 2026-10-27
 
 **Sci-fi regény kilenc kötetben** – Alexio műve, Claude (Anthropic) közreműködésével.
 
@@ -27,6 +27,10 @@ A köteteket **sorrendben, 1-től 9-ig** kell olvasni. Mindegyiknek más a form�
 | 9 | [Cel care ajustează orbita](carte/09-cel-care-ajusteaza-orbita.md) | fordított sorrendben elmesélve |
 
 Az [Olvasói útmutató](ghid/ghidul-cititorului.md) kötetenként egy szakaszt tartalmaz, spoilerek nélkül. Csak addig a kötetig olvasd, ameddig eljutottál; a „A 9. kötet után” szakasz spoilereket tartalmaz.
+
+## Bemutatóoldal
+
+A [`docs/prezentare.html`](docs/prezentare.html) egyfájlos bemutatóoldal (románul): borító, ismertető, a kilenc kötet, letöltési hivatkozások és egy ingyenes első fejezet (az 1. kötet prológusa és 1–2. fejezete, változatlanul). Nincs hálózati kérés és JavaScript. A 2.2.0 óta a tárolt szimuláció (`docs/index.html`) a „Straturi și opțiuni” panelből hivatkozik rá („Pagina cărții”). (Gépi fordítás, anyanyelvi beszélő nem ellenőrizte.)
 
 ## Kiadások
 
