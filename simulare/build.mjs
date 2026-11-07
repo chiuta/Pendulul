@@ -41,7 +41,7 @@ const out = await build({
 });
 let js = out.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
 const tpl = fs.readFileSync('src/template.html', 'utf8');
-const fragment = tpl.replace('/*__BUNDLE__*/', () => js);
+const fragment = tpl.replace('/*__BUNDLE__*/', () => js).replace('__VERSION__', VERSION);
 
 const m = /^([\s\S]*?<\/style>)([\s\S]*)$/.exec(fragment);
 const headPart = m ? m[1].replace(/<meta name="claude:[^>]*>\n?/, '') : '';
@@ -59,4 +59,18 @@ const LINK = '<div><a class="btn" id="aboutBook" href="prezentare.html">Pagina c
 const MARK = '<button class="btn mini" id="panelClose" aria-label="Închide">Închide</button></div>';
 if (!full.includes(MARK)) throw new Error('marcajul panoului lipsește');
 fs.writeFileSync('../docs/index.html', full.replace(MARK, MARK + LINK));
+// fff-kit (nucleu, etichetă de transparență, PWA) se aplică pe docs/ la FIECARE build, ca să nu se piardă blocurile fff:kit și fff:pwa.
+// FFF_KIT = calea către directorul fff-kit (din depozitul chiuta.github.io). Fără el, build-ul eșuează: pagina publicată trebuie să treacă `fff-kit check`.
+import { spawnSync } from 'node:child_process';
+const KIT = process.env.FFF_KIT;
+if (!KIT || !fs.existsSync(`${KIT}/build.mjs`)) throw new Error('setează FFF_KIT=<cale>/fff-kit (vezi simulare/FFF-KIT.md)');
+const sh = (args) => { const r = spawnSync('node', args, { encoding: 'utf8' }); process.stdout.write(r.stdout || ''); process.stderr.write(r.stderr || ''); if (r.status !== 0) throw new Error('fff-kit a eșuat: ' + args.join(' ')); };
+sh([`${KIT}/build.mjs`, 'apply', '../docs', '--slug', 'pendulul', '--modules', 'core,store,dialog,label,bundle']);
+sh([`${KIT}/pwa/pwa.mjs`, 'apply', '../docs', '--slug', 'pendulul', '--name', 'Pendulul 3D', '--short', 'Pendulul', '--theme', '#04060b', '--bg', '#04060b']);
+// sw.js și manifestul au fost adaptate de mână (prezentare.html în precache, categorii): se restaurează din simulare/pwa/ după `pwa apply`.
+fs.copyFileSync('pwa/sw.js', '../docs/sw.js'); fs.copyFileSync('pwa/manifest.webmanifest', '../docs/manifest.webmanifest');
+sh([`${KIT}/build.mjs`, 'fixcsp', '../docs']);
+sh([`${KIT}/build.mjs`, 'info', '../docs', '--slug', 'pendulul']);
+sh([`${KIT}/build.mjs`, 'check', '../docs']);
+if (!fs.existsSync('../docs/sw.js')) throw new Error('docs/sw.js lipsește');
 console.log('bundle KB', (js.length / 1024).toFixed(0), 'full KB', (full.length / 1024).toFixed(0));

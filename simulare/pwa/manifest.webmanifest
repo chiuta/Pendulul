@@ -1,0 +1,37 @@
+{
+  "name": "Pendulul 3D",
+  "short_name": "Pendulul",
+  "description": "Pendulul: simulare 3D a unei planete care oscilează între trei stele și o gaură neagră, cu textele complete ale seriei de 9 volume. Funcționează offline, într-un singur fișier.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "ro",
+  "background_color": "#04060b",
+  "theme_color": "#04060b",
+  "categories": [
+    "books",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "x_fff_pwa": 1
+}
