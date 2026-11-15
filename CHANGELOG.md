@@ -1,5 +1,12 @@
 # Jurnal de modificări — Pendulul
 
+## 2.2.1 — 2026-11-15
+
+Anterior: v2.2.0.
+
+- Nou: texturi fractale hiper-detaliate (fff-texturi 1.1.2) în simularea găzduită (`docs/index.html`) — fundalul și suprafețele mari (panouri, antete, butoane; filele și dialogurile ascunse la încărcare, când se deschid) primesc un material generat local (WebGL2, fără rețea și fără imagini), care se repetă fără cusătură; culorile aplicației rămân ale ei. Se oprește din dialogul „Transparență” sau cu `?notex=1`.
+- Versiunea crește în `simulare/build.mjs`, `simulare/pwa/sw.js` (cache-ul PWA se reîmprospătează), `docs/index.html`, `docs/app.json` și `docs/sw.js`. Kitul comun rămâne la 1.2.0; bundle-ul 3D nu a fost reconstruit.
+
 ## 2.2.0 — 2026-10-27
 
 Anterior: v2.1.0. Recenzie 2 (2026-10-27).

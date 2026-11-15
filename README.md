@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.2.0 · **Last updated:** 2026-10-27
+**Version:** 2.2.1 · **Last updated:** 2026-11-15
 
 **Status:** stable · **Offline:** complete (the 3D simulation and the presentation page make no network requests; downloading the editions needs internet)
 

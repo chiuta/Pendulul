@@ -2,8 +2,8 @@
   "schema": 1,
   "slug": "pendulul",
   "name": "Pendulul 3D",
-  "version": "2.2.0",
-  "updated": "2026-10-27",
+  "version": "2.2.1",
+  "updated": "2026-11-15",
   "description": "Pendulul: simulare 3D a unei planete care oscilează între trei stele și o gaură neagră, cu textele complete ale seriei de 9 volume. Funcționează offline, într-un singur fișier.",
   "egress": [],
   "permissions": [
@@ -14,8 +14,8 @@
   "storageKeys": [
     "pendulul."
   ],
-  "sizeBytes": 1137251,
-  "sha256": "25cf63e80e9c3dff0d0c36fdb91423b6be758292300656cc1adb5f975ebf82c6",
+  "sizeBytes": 1142171,
+  "sha256": "6124fa28c1dc1ec4d6129427b176e61000fd16a290fb4e7bc07c028c778cfe77",
   "csp": {
     "present": true,
     "directives": {

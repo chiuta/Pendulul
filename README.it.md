@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 2.2.0 · **Ultimo aggiornamento:** 2026-10-27
+**Versione:** 2.2.1 · **Ultimo aggiornamento:** 2026-11-15
 
 **Romanzo di fantascienza in nove volumi** di Alexio, in collaborazione con Claude (Anthropic).
 
