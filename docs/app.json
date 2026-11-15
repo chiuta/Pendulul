@@ -14,13 +14,13 @@
   "storageKeys": [
     "pendulul."
   ],
-  "sizeBytes": 1085251,
-  "sha256": "27ad87ff1b7d0c94fb57608896461e8f17fd9bb6a445e1442491b781f94cf175",
+  "sizeBytes": 1137251,
+  "sha256": "25cf63e80e9c3dff0d0c36fdb91423b6be758292300656cc1adb5f975ebf82c6",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'none'",
-      "script-src": "sha256×3",
+      "script-src": "sha256×4",
       "style-src": "'unsafe-inline'",
       "img-src": "'self' data: blob:",
       "connect-src": "'self'",
