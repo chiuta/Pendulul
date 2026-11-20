@@ -1,7 +1,7 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-const VERSION = '2.2.1', UPDATED = '2026-11-15';
+const VERSION = '2.2.3', UPDATED = '2026-11-20';
 
 // Textele volumelor, din ../carte/*.md; ghidul din ../ghid/
 const P = '..';
@@ -65,7 +65,7 @@ import { spawnSync } from 'node:child_process';
 const KIT = process.env.FFF_KIT;
 if (!KIT || !fs.existsSync(`${KIT}/build.mjs`)) throw new Error('setează FFF_KIT=<cale>/fff-kit (vezi simulare/FFF-KIT.md)');
 const sh = (args) => { const r = spawnSync('node', args, { encoding: 'utf8' }); process.stdout.write(r.stdout || ''); process.stderr.write(r.stderr || ''); if (r.status !== 0) throw new Error('fff-kit a eșuat: ' + args.join(' ')); };
-sh([`${KIT}/build.mjs`, 'apply', '../docs', '--slug', 'pendulul', '--modules', 'core,store,dialog,label,bundle']);
+sh([`${KIT}/build.mjs`, 'apply', '../docs', '--slug', 'pendulul', '--modules', 'core,store,dialog,view,a11y,share,label,bundle']);
 sh([`${KIT}/pwa/pwa.mjs`, 'apply', '../docs', '--slug', 'pendulul', '--name', 'Pendulul 3D', '--short', 'Pendulul', '--theme', '#04060b', '--bg', '#04060b']);
 // sw.js și manifestul au fost adaptate de mână (prezentare.html în precache, categorii): se restaurează din simulare/pwa/ după `pwa apply`.
 fs.copyFileSync('pwa/sw.js', '../docs/sw.js'); fs.copyFileSync('pwa/manifest.webmanifest', '../docs/manifest.webmanifest');
