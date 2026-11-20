@@ -1,5 +1,19 @@
 # Jurnal de modificări — Pendulul
 
+## 2.2.3 — 2026-11-20
+
+Anterior: v2.2.2.
+
+- fff-kit 1.8.1 în `docs/index.html`, în `docs/prezentare.html` (până acum 1.7.0) și în `dist/pendulul-3d.html` (până acum 1.8.0): când `localStorage`/`sessionStorage` aruncă sau lipsesc (cookie-uri și date de site blocate, WebView fără stocare, `<iframe sandbox>`), kitul pune în loc o stocare în memorie, iar pagina pornește în loc să se oprească; datele nu se păstrează după închiderea paginii. Ghidajul care mărește controalele mici la 44 px măsoară acum și lățimea corpului paginii.
+- `docs/prezentare.html`: meta-ul CSP are acum `script-src` cu hash-urile scripturilor inline ale kitului (până acum lipsea, iar `fff-kit check` raporta hash-uri CSP lipsă). Aspectul paginii este neschimbat: 0 pixeli diferiți față de versiunea anterioară, la 1280 și la 360 px.
+- `dist/pendulul-3d.html` rămâne la versiunea 2.2.0 (bundle-ul 3D nu a fost reconstruit); s-a actualizat doar kitul. `fff-kit check` raportează în continuare pentru acest fișier cheia de stocare `pendulul.…` fără prefixul `pendulul-3d.` (neschimbat față de înainte).
+
+## 2.2.2 — 2026-11-17
+
+Anterior: v2.2.1.
+
+- Compatibilitate cu browsere mai vechi (Chrome/Edge 55+, Firefox 52+, Safari 10.1+/iOS 10.3+) în `docs/index.html` și `dist/pendulul-3d.html`: sintaxă JavaScript coborâtă la ES2017 și strat de rezervă pentru API-urile care lipsesc în motoarele vechi (fff-kit 1.8.0), hash-uri CSP recalculate. Browserele vechi nu au fost încercate pe dispozitive reale; verificare cu parser ES2017 și într-un motor vechi simulat.
+
 ## 2.2.1 — 2026-11-15
 
 Anterior: v2.2.0.

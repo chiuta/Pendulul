@@ -2,7 +2,14 @@
 """Generează docs/prezentare.html: pagină de prezentare a cărții (copertă, sinopsis, volume, ediții, capitol gratuit).
 Un singur fișier HTML, fără JavaScript, fără cereri externe la încărcare (coperta e încorporată ca data URI).
 Textul provine doar din depozit: README.ro.md (sinopsis), carte/01-arhivista.md (capitol gratuit), dist/coperta.jpg.
-Utilizare: python3 scripts/build_prezentare.py        (necesită doar biblioteca standard Python)"""
+Utilizare: python3 scripts/build_prezentare.py        (necesită doar biblioteca standard Python)
+Atenție: scriptul scrie pagina FĂRĂ kitul comun (zoom, accesibilitate) și cu un meta CSP fără `script-src`; pagina publicată le are, deci după
+rulare se reaplică (docs/index.html e simularea, de aceea se lucrează într-un director temporar, iar kitul vine din depozitul chiuta.github.io):
+  T=$(mktemp -d); cp docs/prezentare.html $T/index.html
+  node <chiuta.github.io>/fff-kit/build.mjs apply $T --slug pendulul-prezentare --modules core,store,view,a11y,share
+  # în meta CSP se adaugă `script-src 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='` (după default-src 'none';), apoi:
+  node <chiuta.github.io>/fff-kit/build.mjs fixcsp $T && cp $T/index.html docs/prezentare.html
+(`fff-kit check` mai raportează pentru această pagină lipsa lui #app-version, care nu se aplică unei pagini de prezentare.)"""
 import re, base64, html, pathlib
 R = pathlib.Path(__file__).resolve().parent.parent
 VERSION, UPDATED = '2.2.0', '2026-10-27'

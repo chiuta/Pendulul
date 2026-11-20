@@ -209,7 +209,7 @@ html.fff-no-flexgap .fff-a11y-rw{margin:8px -8px 0 0}
 @media (prefers-reduced-motion:reduce){.fff-share,.fff-share-btn{transition:none}}
 @media print{.fff-share{display:none!important}}
 html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margin-top:6px}</style>
-<script id="fff-compat">/* fff-compat 1.8.0 — ES5, rulează înaintea kitului */
+<script id="fff-compat">/* fff-compat 1.8.1 — ES5, rulează înaintea kitului */
 /* fff-kit · compat — strat de compatibilitate cu browsere mai vechi.
  * ES5 pur (fără let/const/săgeți/șabloane, fără sintaxă nouă): rulează ca script separat, ÎNAINTEA restului kitului, ca să poată
  * semnala problema și în browsere care nu pot rula kitul. Fără rețea, fără eval/new Function, fără stiluri inline (doar CSSOM).
@@ -901,7 +901,7 @@ html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margi
 })(window, document);
 </script>
 <script type="module" id="fff-imp">window.__fffImp=function(u){return import(u)};</script>
-<script id="fff-kit">/* fff-kit 1.8.0 */
+<script id="fff-kit">/* fff-kit 1.8.1 */
 /* ---- fff-kit/core ---- */
 /* fff-kit · core · v1.2.0 — fără rețea, fără dependențe. Definește window.FFF. */
 (function () {
@@ -957,7 +957,51 @@ html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margi
       }
     }
   } catch (e3) {}
-  var KIT_VERSION = '1.8.0';
+  /* ---------- stocare indisponibilă → stocare în memorie (1.8.1) ----------
+   * Cu „blochează toate cookie-urile / datele site-urilor”, într-un WebView fără DOM storage sau într-un iframe fără allow-same-origin,
+   * `window.localStorage` aruncă SecurityError (sau lipsește), iar o aplicație care îl folosește direct se oprea la pornire (pagină goală).
+   * Punem în loc o stocare doar în memorie (dispare la închiderea paginii), cu aceeași interfață — inclusiv `localStorage.cheie = valoare`,
+   * `in`, `delete`, `Object.keys` când există Proxy. Nu atinge o stocare care funcționează. `FFF.storageVolatile` devine true.
+   * Pentru `localStorage`, modulele kitului (FFF.store, observatorul de chei, copia de siguranță) lucrează pe aceeași memorie: vezi `memShim` mai jos. */
+  var memShim = null;
+  (function () {
+    ['localStorage', 'sessionStorage'].forEach(function (name) {
+      var bad = false;
+      try { var s0 = window[name]; if (!s0 || typeof s0.getItem !== 'function') bad = true; else s0.getItem('fff.__probe'); } catch (e) { bad = true; }
+      if (!bad) return;
+      var has = Object.prototype.hasOwnProperty, data = {};
+      var api = {
+        getItem: function (k) { k = String(k); return has.call(data, k) ? data[k] : null; },
+        setItem: function (k, v) { data[String(k)] = String(v); },
+        removeItem: function (k) { delete data[String(k)]; },
+        clear: function () { data = {}; },
+        key: function (i) { var ks = Object.keys(data); i = +i; return i >= 0 && i < ks.length ? ks[i] : null; }
+      };
+      try { Object.defineProperty(api, 'length', {configurable: true, get: function () { return Object.keys(data).length; }}); } catch (e1) { /* ignorat */ }
+      var store = api;
+      if (typeof Proxy === 'function') {
+        try {
+          store = new Proxy(api, {
+            get: function (t, p) {
+              if (p in t) return t[p];
+              return typeof p === 'string' && has.call(data, p) ? data[p] : undefined;
+            },
+            set: function (t, p, v) { if (typeof p === 'string') data[p] = String(v); return true; },
+            has: function (t, p) { return p in t || (typeof p === 'string' && has.call(data, p)); },
+            deleteProperty: function (t, p) { if (typeof p === 'string') delete data[p]; return true; },
+            ownKeys: function () { return Object.keys(data); },
+            getOwnPropertyDescriptor: function (t, p) { return typeof p === 'string' && has.call(data, p) ? {value: data[p], writable: true, enumerable: true, configurable: true} : undefined; }
+          });
+        } catch (e2) { store = api; }
+      }
+      try { Object.defineProperty(window, name, {configurable: true, enumerable: true, get: function () { return store; }}); }
+      catch (e3) { try { window[name] = store; } catch (e4) { /* ignorat */ } }
+      (window.FFF = window.FFF || {}).storageVolatile = true;
+      if (name === 'localStorage') memShim = {api: api};
+      try { if (window.console && console.warn) console.warn('[fff] ' + name + ' indisponibil în acest browser: modificările se păstrează doar până la închiderea paginii'); } catch (e5) { /* ignorat */ }
+    });
+  })();
+  var KIT_VERSION = '1.8.1';
   var F = (window.FFF = window.FFF || {});
   if (F.core && F.core.version) return; // idempotent la dublă încărcare
   var SUP = ['ro', 'en', 'fr', 'it', 'es', 'pt', 'hu', 'de'];
@@ -1052,6 +1096,7 @@ html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margi
   var LS = null;
   try { LS = window.localStorage; } catch (e) { LS = null; }
   var P = window.Storage ? window.Storage.prototype : null;
+  if (memShim) P = memShim.api;   // stocare în memorie: observatorul și freeze() lucrează pe metodele ei, nu pe cele ale Storage.prototype (care nu se aplică pe ea)
   var origGet = P && P.getItem, origSet = P && P.setItem, origRem = P && P.removeItem, origClr = P && P.clear;
 
   F.lang = function () {
@@ -1244,7 +1289,7 @@ html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margi
     frozen: function () { return frozen; },
     forget: function (k) { if (observing) untrack(k); },
     remember: function (k) { if (observing) track(k); },
-    available: function () { return lsOk(); },
+    available: function () { return lsOk() && !memShim; },   // „disponibilă” = durabilă: pe stocarea în memorie întoarce false (vezi FFF.storageVolatile)
     observing: function () { return observing; }
   };
   F.store = store;
@@ -1579,7 +1624,7 @@ html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margi
       } catch (e) { /* ignorat */ }
     }
   }
-  /* Corecția are două căi, ambele fără element <style> nou (un `style-src` strict, doar pe hash-uri, îl blochează și îl raportează ca încălcare CSP):
+  /* Corecția are două căi, ambele fără un element nou de tip style (un `style-src` strict, doar pe hash-uri, îl blochează și îl raportează ca încălcare CSP):
    *  1) foaie CONSTRUIBILĂ (adoptedStyleSheets: Chrome 73+, Firefox 101+, Safari 16.4+) cu copiile regulilor; vine după toate foile paginii, deci bate regulile aplicației;
    *  2) în browserele mai vechi, regulile existente se rescriu PE LOC prin CSSOM (rule.style.setProperty — permis de CSP): valoarea învelită cu --fff-zinv e identică cu
    *     originalul la zoom 1 (var(--fff-zinv,1)), deci nu trebuie restaurată, iar cascada rămâne neatinsă. */
@@ -2518,7 +2563,7 @@ html.fff-no-flexgap .fff-share>*+*,html.fff-no-flexgap .fff-share-list>*+*{margi
 <meta name="theme-color" content="#04060b">
 <meta name="application-version" content="2.2.0">
 <meta name="last-updated" content="2026-10-27">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-HCzt/jCBXELb/HdvTudfZ0FnTwUYxRlfhJyx03/+A8U=' 'sha256-QrjB1MbPYLmnffTbp57xa6SwKTdVSUGUyaLDtOnyJ+k=' 'sha256-jbKWqIpQp2eTNtovl54tI1IB1HZOZSr5LNlCG4UBmP0=' 'sha256-VxeAQ1bMzFrjzrC70HXgoRVOL7k4eqB+TNN1aDUbgC0='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ESbwsbE2f+VEd03UvtksBTKl4aB/FF1n8LLBzbpsV8o=' 'sha256-QrjB1MbPYLmnffTbp57xa6SwKTdVSUGUyaLDtOnyJ+k=' 'sha256-ImKq9shYTCfXKKoOTZO5gBLTTpoonFwpDKMI1moy1l8=' 'sha256-VxeAQ1bMzFrjzrC70HXgoRVOL7k4eqB+TNN1aDUbgC0='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="author" content="Alexio">
 <meta property="og:title" content="Pendulul 3D">
 <meta property="og:description" content="Simulare 3D și cititor pentru seria SF Pendulul (9 volume).">
